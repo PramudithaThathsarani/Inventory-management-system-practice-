@@ -158,6 +158,11 @@ public class sales extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jButton3.setForeground(new java.awt.Color(0, 102, 102));
         jButton3.setText("Delete");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -230,7 +235,7 @@ public class sales extends javax.swing.JFrame {
                         .addGap(127, 127, 127))))
         );
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project/icons8-buying-94.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Pramudi\\prac proj\\proj\\icons8-sales-performance-94.png")); // NOI18N
         jLabel2.setText("jLabel2");
 
         jhomePanel.setBackground(new java.awt.Color(0, 102, 102));
@@ -570,7 +575,7 @@ public class sales extends javax.swing.JFrame {
                                     .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
+                        .addGap(40, 40, 40)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -579,9 +584,9 @@ public class sales extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jhomePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -623,8 +628,7 @@ public class sales extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1119, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -794,14 +798,15 @@ public class sales extends javax.swing.JFrame {
         String sDate=tblModel.getValueAt(jsalesTable.getSelectedRow(), 2).toString();
         String sItemID=tblModel.getValueAt(jsalesTable.getSelectedRow(), 3).toString();
         
-         jTextSID.setText("sID");
-         jTextSItem.setText("sItem");
-         jTextSDate.setText("sDate");
-         jTextSItemID.setText("sItemID");
+         jTextSID.setText(sID);
+         jTextSItem.setText(sItem);
+         jTextSDate.setText(sDate);
+         jTextSItemID.setText(sItemID);
     }//GEN-LAST:event_jsalesTableMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        //add
          if(jTextSID.getText().equals("")||jTextSItem.getText().equals("")||jTextSDate.getText().equals("")||jTextSItemID.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Please Enter All Data");
         }else{
@@ -819,6 +824,7 @@ public class sales extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        //update
          DefaultTableModel tblMode=(DefaultTableModel)jsalesTable.getModel();
         
         if(jsalesTable.getSelectedRow()==1){
@@ -835,6 +841,20 @@ public class sales extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        //delete
+        DefaultTableModel tableModel=(DefaultTableModel)jsalesTable.getModel();
+        
+        if(jsalesTable.getSelectedRow()!=-1){
+            tableModel.removeRow(jsalesTable.getSelectedRow());
+        }else if(jsalesTable.getSelectedRow()==0){
+            JOptionPane.showMessageDialog(this, "Table is Empty");
+        }else{
+            JOptionPane.showMessageDialog(this, "Please select single Row for Delete");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
